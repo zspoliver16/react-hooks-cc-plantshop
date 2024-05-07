@@ -1,22 +1,20 @@
-import React, { useState } from "react";
-import NewPlantForm from "./NewPlantForm";
-import PlantList from "./PlantList";
-import Search from "./Search";
+import React from "react";
+import NewPlantForm from "./NewPlantForm"; 
+import PlantList from "./PlantList"; 
 
-function PlantPage({ onSearch }) {
-  const [ plant, setPlant ] = useState("")
-  const [ name, image, price ] = plant
-  const [searching, setSearching] = useState('')
-
-  function onSearch(search) {
-    setSearching(search)
+function PlantPage({ plants, searchTerm, setPlants }) { 
+  const handleSoldOut = (plantId) => { 
+    console.log(`Mark plant ${plantId} as sold out`) 
   }
 
-  return (
+  const handleDelete = (id) => { 
+    setPlants((prevPlants) => prevPlants.filter((plant) => plant.id !== id))
+  }
+
+  return ( 
     <main>
-      <NewPlantForm />
-      <Search onSearch={onSearch} />
-      <PlantList setPlant={setPlant} plant={plant} searching={searching} />
+      <NewPlantForm setPlants={setPlants} /> 
+      <PlantList plants={plants} searchTerm={searchTerm} handleSoldOut={handleSoldOut} handleDelete={handleDelete} />
     </main>
   );
 }
