@@ -1,10 +1,7 @@
 import React from "react";
 import Search from "./Search";
 
-function Header({ setSearchTerm }) {
-
-
-
+function Header({ setSearchTerm }) { //defines Header as component/ renders search component and passed down setSearchTerm as prop
   return (
     <header>
       <h1>
@@ -13,7 +10,7 @@ function Header({ setSearchTerm }) {
           🌱
         </span>
       </h1>
-      <Search setSearchTerm={setSearchTerm} />
+      <Search setSearchTerm={setSearchTerm} /> 
     </header>
   );
 }

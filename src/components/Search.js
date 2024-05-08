@@ -1,12 +1,12 @@
 import React from "react";
 
-function Search({ setSearchTerm }) { 
-  function handleInputChange(e) { 
+function Search({ setSearchTerm }) { //define Search as component
+  function handleInputChange(e) { //function to handle the input changes and updating state
     setSearchTerm(e.target.value)
   }
 
 
-  return (  
+  return (   //form for searching plants
     <div className="searchbar"> 
       <label htmlFor="search">Search Plants 🔍:</label>
       <input            

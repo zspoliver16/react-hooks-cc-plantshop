@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 
-function PlantCard({ plant, handleSoldOut, handleDelete }) {
+function PlantCard({ plant, handleSoldOut, handleDelete }) {  //defines PlantCard component and display info abt each plant
   const { id, name, image, price, soldOut } = plant
-  const [isSoldOut, setIsSoldOut] = useState(soldOut) 
+  const [isSoldOut, setIsSoldOut] = useState(soldOut)
   const [newPrice, setNewPrice] = useState(price) 
 
-  const handleSoldOutClick = () => { 
+  const handleSoldOutClick = () => { //handling of sold out status
     setIsSoldOut(true)
     handleSoldOut(id)
   }
 
-  const handlePriceUpdate = () => {
+  const handlePriceUpdate = () => { 
     fetch(`http://localhost:6001/plants/${id}`, {
       method: "PATCH",
       headers: {
@@ -24,7 +24,7 @@ function PlantCard({ plant, handleSoldOut, handleDelete }) {
       })
     }   
 
-   const handleDeleteClick = () => { 
+   const handleDeleteClick = () => { //send PATCH and DELETE request to server for updating price and delete plant
     fetch(`http://localhost:6001/plants/${id}`, {
       method: "DELETE",
     })
@@ -44,7 +44,7 @@ function PlantCard({ plant, handleSoldOut, handleDelete }) {
         ) : ( 
           <button onClick={handleSoldOutClick} className="primary">In Stock </button>
         )}
-        <input type="number" value={newPrice} onChange={(event) => setNewPrice(event.target.value)} placeholder="Enter New Price" />
+        <input type="number" value={newPrice} onChange={(e) => setNewPrice(e.target.value)} placeholder="Enter New Price" />
         <button onClick={handlePriceUpdate} className="update-button">Update Price </button>
         <button onClick={handleDeleteClick} className="delete-button">Delete Plant 🗑️</button>
     </li>

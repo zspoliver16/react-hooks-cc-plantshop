@@ -1,6 +1,6 @@
 import React, { useState } from "react"; 
 
-function NewPlantForm({ setPlants}) {
+function NewPlantForm({ setPlants}) { //define NewPlantForm component and form for adding new data
   const [formData, setFormData] = useState({ name: "", image: "", price: ""}) 
 
   function handleInputChange(e) { 
@@ -10,19 +10,19 @@ function NewPlantForm({ setPlants}) {
 
   function handleSubmit(e) { 
     e.preventDefault()
-    fetch("http://localhost:6001/plants", {
+    fetch("http://localhost:6001/plants", { //input changes and submissions handles and POST request to add new plant to server
       method: "POST",       
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(formData) 
     })
-     .then(resp => resp.json())
+     .then(res => res.json())
      .then((data) => {
         setPlants((prevPlants) => [...prevPlants, data])
-        setFormData({ name: "", image: "", price: ""})  
+        setFormData({ name: "", image: "", price: ""}) 
       })
-      .catch((error) => console.error("Error", error))
+      .catch((error) => console.error("Error adding plant:", error))
   }
 
 
