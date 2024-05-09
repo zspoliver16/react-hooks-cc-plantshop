@@ -11,7 +11,7 @@ function PlantCard({ plant, handleSoldOut, handleDelete }) {  //defines PlantCar
   }
 
   const handlePriceUpdate = () => { 
-    fetch(`http://localhost:6001/plants/${id}`, {
+    fetch(`http://localhost:6001/plants/${id}`, { //Send PATch request to update new price for plant
       method: "PATCH",
       headers: {
         "Content-Type": "application/json"
@@ -24,7 +24,7 @@ function PlantCard({ plant, handleSoldOut, handleDelete }) {  //defines PlantCar
       })
     }   
 
-   const handleDeleteClick = () => { //send PATCH and DELETE request to server for updating price and delete plant
+   const handleDeleteClick = () => { //send DELETE request to delete said plant
     fetch(`http://localhost:6001/plants/${id}`, {
       method: "DELETE",
     })
